@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
 # force the most recent dashing version to avoid #48
-gem 'dashing', '>= 1.3.7'
+#gem 'dashing', '>= 1.3.7'
+gem 'smashing'
 
 # dashing server
 gem 'thin'

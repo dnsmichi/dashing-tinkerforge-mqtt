@@ -5,7 +5,10 @@ MQTT_SERVER = 'mqtt://10.0.10.163'
 # Set the MQTT topics you're interested in and the tag (data-id) to send for dashing events
 MQTT_TOPICS = {
 	'tinkerforge/bricklet/humidity_v2/Dhv/humidity' => 'humidity',
-  'tinkerforge/bricklet/humidity_v2/Dhv/temperature' => 'temperature'
+  'tinkerforge/bricklet/humidity_v2/Dhv/temperature' => 'temperature',
+  'tinkerforge/brick/master/6QkmMq/chip_temperature' => 'temperature_sensor',
+  'tinkerforge/bricklet/ambient_light_v2/yLs/illuminance' => 'illuminance',
+  'tinkerforge/brick/master/6QkmMq/stack_voltage' => 'voltage',
               }
 
 # Start a new thread for the MQTT client
@@ -27,8 +30,16 @@ Thread.new {
       if m_val.has_key?("temperature")
         val = m_val["temperature"]
       end
+      if m_val.has_key?("voltage")
+        puts "stack_voltage"
+        val = m_val["voltage"]
+      end
+      if m_val.has_key?("illuminance")
+        val = m_val["illuminance"]
+      end
 
       puts val.to_s
+      val = val / 100.0
 
       current_values[tag] = val
       send_event(tag, { value: val, current: val, last: last_value })
