@@ -8,7 +8,8 @@ MQTT_TOPICS = {
   'tinkerforge/bricklet/humidity_v2/Dhv/temperature' => 'temperature',
   'tinkerforge/brick/master/6QkmMq/chip_temperature' => 'temperature_sensor',
   'tinkerforge/bricklet/ambient_light_v2/yLs/illuminance' => 'illuminance',
-  'tinkerforge/brick/master/6QkmMq/stack_voltage' => 'voltage',
+  'tinkerforge/bricklet/ptc_v2/GqF/temperature' => 'ptc_temperature',
+  #'tinkerforge/brick/master/6QkmMq/usb_voltage' => 'voltage',
               }
 
 # Start a new thread for the MQTT client
@@ -38,7 +39,7 @@ Thread.new {
         val = m_val["illuminance"]
       end
 
-      puts val.to_s
+      #puts val.to_s
       val = val / 100.0
 
       current_values[tag] = val
