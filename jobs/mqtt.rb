@@ -1,7 +1,11 @@
 require 'mqtt'
 require 'json'
 # Set your MQTT server
-MQTT_SERVER = 'mqtt://10.0.10.163'
+
+ENV['MQTT_SERVER'] = 'mqtt://127.0.0.1' unless ENV.has_key?('MQTT_SERVER')
+
+MQTT_SERVER = ENV['MQTT_SERVER']
+
 # Set the MQTT topics you're interested in and the tag (data-id) to send for dashing events
 MQTT_TOPICS = {
 	'tinkerforge/bricklet/humidity_v2/Dhv/humidity' => 'humidity',

@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  dashing:
+    image: lazyfrosch/dashing-tinkerforge-mqtt
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      MQTT_SERVER: mqtt://192.168.188.106
+    # To test changes
+    #volumes:
+    #  - ./:/data
